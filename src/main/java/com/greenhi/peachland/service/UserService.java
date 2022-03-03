@@ -2,6 +2,7 @@ package com.greenhi.peachland.service;
 
 import com.greenhi.peachland.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.greenhi.peachland.unit.Result;
 
 /**
  * <p>
@@ -12,5 +13,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-03-01
  */
 public interface UserService extends IService<User> {
+    Result add(User userBase);
 
+    Result delete(String uid);
+
+    Result getAllPaging(Integer pageNo, Integer pageSize);
+
+    Result selectUserOne(String uid);
+
+    Result update(User userBase);
 }
