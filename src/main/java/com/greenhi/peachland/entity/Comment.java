@@ -29,6 +29,8 @@ public class Comment implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    private Integer uid;
+
     private Integer dynamicId;
 
     private String commentContent;
