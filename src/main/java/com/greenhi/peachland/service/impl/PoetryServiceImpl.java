@@ -25,7 +25,7 @@ public class PoetryServiceImpl extends ServiceImpl<PoetryMapper, Poetry> impleme
     @Override
     public Result add(Poetry Poetry) {
         if (getOne(new QueryWrapper<Poetry>()
-                .eq("Poetry_id", Poetry.getPoetryId())
+                .eq("Poetry_id", Poetry.getId())
         ) == null) {
             save(Poetry);
             return ResultUtil.success("诗歌数据添加成功");
@@ -72,10 +72,10 @@ public class PoetryServiceImpl extends ServiceImpl<PoetryMapper, Poetry> impleme
     @Override
     public Result update(Poetry Poetry) {
         if (getOne(new QueryWrapper<Poetry>()
-                .eq("poetryId", Poetry.getPoetryId())
+                .eq("poetryId", Poetry.getId())
         ) != null) {
             baseMapper.update(Poetry, new QueryWrapper<Poetry>()
-                    .eq("poetryId", Poetry.getPoetryId()));
+                    .eq("poetryId", Poetry.getId()));
             return ResultUtil.success("诗歌数据更新成功");
         }
         return ResultUtil.error(ResultEnum.DATA_NOT_EXISTS.getCode(), ResultEnum.DATA_NOT_EXISTS.getMsg());

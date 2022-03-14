@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.greenhi.peachland.mapper.FocusMapper">
+
+    <resultMap id="focusMap" type="com.greenhi.peachland.entity.User">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_image" property="userImage"/>
+        <result column="occupation" property="occupation"/>
+        <result column="sex" property="sex"/>
+        <result column="brief_introduction" property="briefIntroduction"/>
+    </resultMap>
+    
+    <delete id="deleteByUidAndFid" parameterType="java.lang.Integer">
+        delete from focus where uid=#{uid} and fid=#{fid}
+    </delete>
+
+    <select id="selectByUid" resultMap="focusMap">
+        select id,user_name,user_image,occupation,sex,brief_introduction
+        from focus f
+        inner join user u
+        on f.fid=u.id
+        where f.uid=#{uid}
+    </select>
+
+    <select id="selectByFid" resultMap="focusMap">
+        select id,user_name,user_image,occupation,sex,brief_introduction
+        from focus f
+        inner join user u
+        on f.uid=u.id
+        where f.fid=#{fid}
+    </select>
+</mapper>

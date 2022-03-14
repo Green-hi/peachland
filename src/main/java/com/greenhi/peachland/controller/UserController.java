@@ -41,8 +41,8 @@ public class UserController {
         return service.getAllPaging(pageNo,pageSize) ;
     }
 
-    @RequestMapping(value = "/selectOneByUid",method = RequestMethod.GET)
-    public Result selectOneByUid(String uid){
+    @RequestMapping(value = "/selectOneById",method = RequestMethod.GET)
+    public Result selectOneById(String uid){
         return service.selectUserOne(uid) ;
     }
 

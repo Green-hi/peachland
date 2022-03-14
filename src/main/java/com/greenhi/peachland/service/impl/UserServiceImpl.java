@@ -26,7 +26,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result add(User user) {
         if (getOne(new QueryWrapper<User>()
-                .eq("user_id", user.getUserId())
+                .eq("user_id", user.getId())
         ) == null) {
             save(user);
             return ResultUtil.success("用户数据添加成功");
@@ -73,10 +73,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result update(User user) {
         if (getOne(new QueryWrapper<User>()
-                .eq("uid", user.getUserId())
+                .eq("uid", user.getId())
         ) != null) {
             baseMapper.update(user, new QueryWrapper<User>()
-                    .eq("uid", user.getUserId()));
+                    .eq("uid", user.getId()));
             return ResultUtil.success("用户数据更新成功");
         }
         return ResultUtil.error(ResultEnum.DATA_NOT_EXISTS.getCode(), ResultEnum.DATA_NOT_EXISTS.getMsg());

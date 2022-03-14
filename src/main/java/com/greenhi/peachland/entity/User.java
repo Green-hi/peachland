@@ -22,12 +22,12 @@ public class User implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    private String user;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
+    private String userName;
 
     private String userImage;
-
-    @TableId(value = "user_id", type = IdType.ASSIGN_ID)
-    private String userId;
 
     private String password;
 

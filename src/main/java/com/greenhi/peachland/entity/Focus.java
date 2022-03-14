@@ -1,8 +1,8 @@
 package com.greenhi.peachland.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -13,19 +13,20 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author greenhi
- * @since 2022-03-01
+ * @since 2022-03-13
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class UserFuns implements Serializable {
+public class Focus implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    private String userId;
+    @TableId(value = "uid")
+    private Integer uid;
 
-    @TableId(value = "funs_id", type = IdType.ASSIGN_ID)
-    private String funsId;
+    @TableId(value = "fid")
+    private Integer fid;
 
 
 }

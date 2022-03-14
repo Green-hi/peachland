@@ -40,14 +40,14 @@ public class PoetryController {
         return service.getAllPaging(pageNo,pageSize) ;
     }
 
-    @RequestMapping(value = "/selectOneBypoetryId",method = RequestMethod.GET)
-    public Result selectOneBypoetryId(String poetryId){
+    @RequestMapping(value = "/selectOneById",method = RequestMethod.GET)
+    public Result selectOneById(String poetryId){
         return service.selectPoetryOne(poetryId) ;
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public Result update(@RequestBody Poetry Poetry){
-        return service.update(Poetry);
+    public Result update(@RequestBody Poetry poetry){
+        return service.update(poetry);
     }
 
 }

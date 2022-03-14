@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author greenhi
- * @since 2022-03-01
+ * @since 2022-03-13
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -22,7 +22,9 @@ public class Comment implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @TableId(value = "dynamic_id", type = IdType.ASSIGN_ID)
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
     private Integer dynamicId;
 
     private String commentContent;

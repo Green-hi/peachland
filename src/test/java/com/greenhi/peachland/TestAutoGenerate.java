@@ -29,9 +29,9 @@ public class TestAutoGenerate {
         // 实体属性 Swagger2 注解，添加 Swagger 依赖，开启 Swagger2 模式（可选）
         gc.setSwagger2(true);
         // 重新生成文件时是否覆盖，false 表示不覆盖（可选）
-        gc.setFileOverride(false);
+        gc.setFileOverride(true);
         // 配置主键生成策略，此处为 ASSIGN_ID（可选）
-        gc.setIdType(IdType.ASSIGN_ID);
+        gc.setIdType(IdType.AUTO);
         // 配置日期类型，此处为 ONLY_DATE（可选）
         gc.setDateType(DateType.ONLY_DATE);
         // 默认生成的 service 会有 I 前缀
@@ -70,7 +70,7 @@ public class TestAutoGenerate {
         // Step5：策略配置（数据库表配置）
         StrategyConfig strategy = new StrategyConfig();
         // 指定表名（可以同时操作多个表，使用 , 隔开）（需要修改）
-        strategy.setInclude("comment","dynamic","poetry","user","user_focus","user_funs");
+        strategy.setInclude("comment","dynamic","focus");
         // 配置数据表与实体类名之间映射的策略
         strategy.setNaming(NamingStrategy.underline_to_camel);
         // 配置数据表的字段与实体类的属性名之间映射的策略

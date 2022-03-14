@@ -23,8 +23,8 @@ public class Poetry implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @TableId(value = "poetry_id", type = IdType.ASSIGN_ID)
-    private String poetryId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     private String poetryContent;
 

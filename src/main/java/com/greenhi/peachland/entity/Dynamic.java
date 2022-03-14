@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author greenhi
- * @since 2022-03-01
+ * @since 2022-03-13
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -22,10 +22,10 @@ public class Dynamic implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    private String userId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
-    @TableId(value = "dynamic_id", type = IdType.ASSIGN_ID)
-    private String dynamicId;
+    private Integer userId;
 
     private String dynamicContent;
 
@@ -35,7 +35,7 @@ public class Dynamic implements Serializable {
 
     private Integer loveNumber;
 
-    private Integer conmentNumber;
+    private Integer commentNumber;
 
 
 }
