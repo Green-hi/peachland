@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 13/03/2022 10:59:08
+ Date: 14/03/2022 14:01:45
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `comment`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_comment_did`(`dynamic_id`) USING BTREE,
   CONSTRAINT `FK_comment_did` FOREIGN KEY (`dynamic_id`) REFERENCES `dynamic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of comment
@@ -49,7 +49,7 @@ CREATE TABLE `dynamic`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_dynamic_uid`(`user_id`) USING BTREE,
   CONSTRAINT `FK_dynamic_uid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of dynamic
@@ -60,17 +60,20 @@ CREATE TABLE `dynamic`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `focus`;
 CREATE TABLE `focus`  (
-  `user_id` int NOT NULL,
-  `focus_id` int NOT NULL,
-  PRIMARY KEY (`user_id`, `focus_id`) USING BTREE,
-  INDEX `FK_focus_fid`(`focus_id`) USING BTREE,
-  CONSTRAINT `FK_focus_uid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_focus_fid` FOREIGN KEY (`focus_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `uid` int NOT NULL,
+  `fid` int NOT NULL,
+  PRIMARY KEY (`uid`, `fid`) USING BTREE,
+  INDEX `FK_focus_fid`(`fid`) USING BTREE,
+  CONSTRAINT `FK_focus_fid` FOREIGN KEY (`fid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_focus_uid` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of focus
 -- ----------------------------
+INSERT INTO `focus` VALUES (1, 2);
+INSERT INTO `focus` VALUES (3, 2);
+INSERT INTO `focus` VALUES (1, 3);
 
 -- ----------------------------
 -- Table structure for poetry
@@ -90,7 +93,7 @@ CREATE TABLE `poetry`  (
   `Japanese_translation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Korean_translation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of poetry
@@ -103,7 +106,7 @@ INSERT INTO `poetry` VALUES (1, '茅屋为秋风所破歌\r\n杜甫 〔唐代〕
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `user_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `occupation` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
@@ -113,11 +116,13 @@ CREATE TABLE `user`  (
   `funs` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `focus` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'zhangfei', 'img1', 'lalala', 'soldier', '男', '我最帅', '666', NULL, '666');
+INSERT INTO `user` VALUES (2, 'guanyu', 'img2', 'heiheihei', 'soldier', '男', '我最牛', '999', '999', '999');
+INSERT INTO `user` VALUES (3, 'liubei', 'img3', 'hahaha', 'soldier', '男', '我最大', '1000', '1000', '1000');
 
 SET FOREIGN_KEY_CHECKS = 1;
