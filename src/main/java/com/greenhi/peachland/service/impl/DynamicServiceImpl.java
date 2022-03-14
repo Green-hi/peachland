@@ -12,6 +12,8 @@ import com.greenhi.peachland.unit.ResultEnum;
 import com.greenhi.peachland.unit.ResultUtil;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -79,5 +81,51 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic> impl
             return ResultUtil.success("动态数据更新成功");
         }
         return ResultUtil.error(ResultEnum.DATA_NOT_EXISTS.getCode(), ResultEnum.DATA_NOT_EXISTS.getMsg());
+    }
+
+    @Override
+    public Result selectByUid(Integer uid) {
+        List<Dynamic> dynamics = null;
+        try {
+            dynamics = baseMapper.selectByUid(uid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(),ResultEnum.SQL_EXCEPTION.getMsg());
+        }
+        return ResultUtil.success(dynamics);
+    }
+
+    @Override
+    public Result selectFocusByUid(Integer uid) {
+        List<Dynamic> dynamics = null;
+        try {
+            dynamics = baseMapper.selectFocusByUid(uid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(),ResultEnum.SQL_EXCEPTION.getMsg());
+        }
+        return ResultUtil.success(dynamics);
+    }
+
+    @Override
+    public Result addLikeById(Integer id) {
+        try {
+            baseMapper.addLikeById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(),ResultEnum.SQL_EXCEPTION.getMsg());
+        }
+        return ResultUtil.success();
+    }
+
+    @Override
+    public Result addCommById(Integer id) {
+        try {
+            baseMapper.addCommById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(),ResultEnum.SQL_EXCEPTION.getMsg());
+        }
+        return ResultUtil.success();
     }
 }

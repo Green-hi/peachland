@@ -13,6 +13,7 @@ public enum ResultEnum {
     DATA_NOT_EXISTS(301,"数据不存在"),
     DATA_IS_EXISTS(302,"数据已存在"),
     ORDER_NOT_EXISTS(401,"订单不存在"),
+    SQL_EXCEPTION(402,"SQL异常"),
     FILE_NOT_EXISTS(501,"文件不能为空"),
     FILE_NOT_UPLOADS(501,"文件上传失败"),
     FILE_IS_EXISTS(502,"文件已存在"),

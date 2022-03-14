@@ -23,4 +23,12 @@ public interface DynamicService extends IService<Dynamic> {
     Result selectDynamicOne(Integer id);
 
     Result update(Dynamic dynamic);
+
+    Result selectByUid(Integer uid);
+
+    Result selectFocusByUid(Integer uid);
+
+    Result addLikeById(Integer id);
+
+    Result addCommById(Integer id);
 }

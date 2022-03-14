@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-03-13
  */
 @RestController
-@RequestMapping("/peachland/dynamic")
+@RequestMapping("/dynamic")
 public class DynamicController {
     @Autowired
     private DynamicService service;
@@ -49,6 +49,26 @@ public class DynamicController {
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public Result update(@RequestBody Dynamic dynamic){
         return service.update(dynamic);
+    }
+
+    @RequestMapping(value = "/selectByUid",method = RequestMethod.GET)
+    public Result selectByUid(Integer uid){
+        return service.selectByUid(uid) ;
+    }
+
+    @RequestMapping(value = "/selectFocusByUid",method = RequestMethod.GET)
+    public Result selectFocusByUid(Integer uid){
+        return service.selectFocusByUid(uid) ;
+    }
+
+    @RequestMapping(value = "/addLikeById",method = RequestMethod.POST)
+    public Result addLikeById(Integer id){
+        return service.addLikeById(id) ;
+    }
+
+    @RequestMapping(value = "/addCommById",method = RequestMethod.POST)
+    public Result addCommById(Integer id){
+        return service.addCommById(id) ;
     }
 }
 

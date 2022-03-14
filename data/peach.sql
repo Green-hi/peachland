@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 14/03/2022 14:01:45
+ Date: 14/03/2022 23:18:21
 */
 
 SET NAMES utf8mb4;
@@ -25,9 +25,11 @@ CREATE TABLE `comment`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `dynamic_id` int NOT NULL,
   `comment_content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_comment_did`(`dynamic_id`) USING BTREE,
-  CONSTRAINT `FK_comment_did` FOREIGN KEY (`dynamic_id`) REFERENCES `dynamic` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_comment_did` FOREIGN KEY (`dynamic_id`) REFERENCES `dynamic_` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -35,25 +37,30 @@ CREATE TABLE `comment`  (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for dynamic
+-- Table structure for dynamic_
 -- ----------------------------
-DROP TABLE IF EXISTS `dynamic`;
-CREATE TABLE `dynamic`  (
+DROP TABLE IF EXISTS `dynamic_`;
+CREATE TABLE `dynamic_`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
+  `uid` int NOT NULL,
   `dynamic_content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `love_number` int NULL DEFAULT NULL,
-  `comment_number` int NULL DEFAULT NULL,
+  `love_number` int NULL DEFAULT 0,
+  `comment_number` int NULL DEFAULT 0,
+  `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `FK_dynamic_uid`(`user_id`) USING BTREE,
-  CONSTRAINT `FK_dynamic_uid` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  INDEX `FK_dynamic_uid`(`uid`) USING BTREE,
+  CONSTRAINT `FK_dynamic_uid` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of dynamic
+-- Records of dynamic_
 -- ----------------------------
+INSERT INTO `dynamic_` VALUES (1, 2, '全力以赴推倒对面，是战争的基本礼仪', 'img1', 67, 67, '2021-12-07 22:30:29', NULL);
+INSERT INTO `dynamic_` VALUES (2, 3, '好好反省', 'img3', 44, 44, '0000-00-00 00:00:00', NULL);
+INSERT INTO `dynamic_` VALUES (3, 1, '有些罪不会消失，有些事非做不可。', 'img2', 0, 0, '0000-00-00 00:00:00', NULL);
+INSERT INTO `dynamic_` VALUES (4, 1, '邂逅，让我回忆起重要的事。', 'img4', 0, 0, '0000-00-00 00:00:00', NULL);
 
 -- ----------------------------
 -- Table structure for focus
@@ -121,7 +128,7 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'zhangfei', 'img1', 'lalala', 'soldier', '男', '我最帅', '666', NULL, '666');
+INSERT INTO `user` VALUES (1, 'zhangfei', 'img1', 'lalala', 'soldier', '男', '我最帅', '666', '666', '666');
 INSERT INTO `user` VALUES (2, 'guanyu', 'img2', 'heiheihei', 'soldier', '男', '我最牛', '999', '999', '999');
 INSERT INTO `user` VALUES (3, 'liubei', 'img3', 'hahaha', 'soldier', '男', '我最大', '1000', '1000', '1000');
 

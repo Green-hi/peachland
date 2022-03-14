@@ -3,8 +3,6 @@ package com.greenhi.peachland.mapper;
 import com.greenhi.peachland.entity.Focus;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.greenhi.peachland.entity.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
