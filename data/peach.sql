@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 14/03/2022 23:18:21
+ Date: 14/03/2022 23:37:57
 */
 
 SET NAMES utf8mb4;
@@ -23,18 +23,22 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
   `id` int NOT NULL AUTO_INCREMENT,
+  `uid` int NOT NULL,
   `dynamic_id` int NOT NULL,
   `comment_content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_comment_did`(`dynamic_id`) USING BTREE,
-  CONSTRAINT `FK_comment_did` FOREIGN KEY (`dynamic_id`) REFERENCES `dynamic_` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  INDEX `FK_comment_uid`(`uid`) USING BTREE,
+  CONSTRAINT `FK_comment_did` FOREIGN KEY (`dynamic_id`) REFERENCES `dynamic_` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_comment_uid` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
+INSERT INTO `comment` VALUES (1, 1, 1, '我笑了', '2022-03-14 23:32:40', '2022-03-14 23:32:40');
 
 -- ----------------------------
 -- Table structure for dynamic_
