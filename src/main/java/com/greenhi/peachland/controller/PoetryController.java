@@ -31,8 +31,8 @@ public class PoetryController {
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
-    public Result delete(String poetryId){
-        return service.delete(poetryId);
+    public Result delete(String id){
+        return service.delete(id);
     }
 
     @RequestMapping(value = "/getAllPaging",method = RequestMethod.GET)
@@ -40,14 +40,44 @@ public class PoetryController {
         return service.getAllPaging(pageNo,pageSize) ;
     }
 
-    @RequestMapping(value = "/selectOneById",method = RequestMethod.GET)
-    public Result selectOneById(String poetryId){
-        return service.selectPoetryOne(poetryId) ;
+    @RequestMapping(value = "/selectById",method = RequestMethod.GET)
+    public Result selectById(String id){
+        return service.selectPoetryOne(id) ;
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public Result update(@RequestBody Poetry poetry){
         return service.update(poetry);
+    }
+
+    @RequestMapping(value = "/selectByTitleBase",method = RequestMethod.GET)
+    public Result selectByTitleBase(String title){
+        return service.selectByTitleBase(title) ;
+    }
+
+    @RequestMapping(value = "/getTitleByAuthor",method = RequestMethod.GET)
+    public Result getTitleByAuthor(String author){
+        return service.selectTitleByAuthor(author) ;
+    }
+
+    @RequestMapping(value = "/getTitleByTheme",method = RequestMethod.GET)
+    public Result getTitleByTheme(String theme){
+        return service.selectTitleByTheme(theme) ;
+    }
+
+    @RequestMapping(value = "/getTitleByDiff",method = RequestMethod.GET)
+    public Result getTitleByDiff(String diff){
+        return service.selectTitleByDiff(diff) ;
+    }
+
+    @RequestMapping(value = "/getTitleByDynasty",method = RequestMethod.GET)
+    public Result getTitleByDynasty(String dynasty){
+        return service.selectTitleByDynasty(dynasty) ;
+    }
+
+    @RequestMapping(value = "/getTransByTitle",method = RequestMethod.GET)
+    public Result getTransByTitle(String title){
+        return service.getTransByTitle(title) ;
     }
 
 }

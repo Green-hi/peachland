@@ -25,4 +25,16 @@ public interface PoetryService extends IService<Poetry> {
 
     Result update(Poetry poetry);
 
+    Result selectByTitleBase(String title);
+
+    Result selectTitleByAuthor(String author);
+
+    Result selectTitleByTheme(String theme);
+
+    Result selectTitleByDiff(String diff);
+
+    Result selectTitleByDynasty(String dynasty);
+
+    Result getTransByTitle(String title);
+
 }

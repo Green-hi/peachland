@@ -2,4 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.greenhi.peachland.mapper.PoetryMapper">
 
+    <resultMap id="poetryMapBase" type="com.greenhi.peachland.item.ItemPoetryBase">
+        <id column="id" property="id"/>
+        <result column="author" property="author"/>
+        <result column="content" property="content"/>
+        <result column="notes" property="notes"/>
+    </resultMap>
+
+    <resultMap id="poetryMapTrans" type="com.greenhi.peachland.item.ItemPoetryTrans">
+        <id column="id" property="id"/>
+        <result column="English_translation" property="english"/>
+        <result column="French_translation" property="french"/>
+        <result column="Russian_translation" property="russian"/>
+        <result column="Japanese_translation" property="japanese"/>
+        <result column="Korean_translation" property="korean"/>
+    </resultMap>
+
+    <select id="selectByTitleBase" resultMap="poetryMapBase">
+        select id,author,content,notes
+        from poetry
+        where title=#{title}
+    </select>
+
+    <select id="selectTitleByAuthor" resultType="java.lang.String">
+        select title
+        from poetry
+        where author=#{author}
+    </select>
+
+    <select id="selectTitleByTheme" resultType="java.lang.String">
+        select title
+        from poetry
+        where theme like #{theme}
+    </select>
+
+    <select id="selectTitleByDiff" resultType="java.lang.String">
+        select title
+        from poetry
+        where difficulty=#{diff}
+    </select>
+
+    <select id="selectTitleByDynasty" resultType="java.lang.String">
+        select title
+        from poetry
+        where dynasty=#{dynasty}
+    </select>
+
+    <select id="getTransByTitle" resultMap="poetryMapTrans">
+        select id,English_translation,French_translation,Russian_translation,Japanese_translation,Korean_translation
+        from poetry
+        where title=#{title}
+    </select>
 </mapper>

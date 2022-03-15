@@ -37,10 +37,10 @@ public class User implements Serializable {
 
     private String briefIntroduction;
 
-    private String love;
+    private Integer love;
 
-    private String funs;
+    private Integer funs;
 
-    private String focus;
+    private Integer focus;
 
 }

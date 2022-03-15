@@ -1,6 +1,7 @@
 package com.greenhi.peachland.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -25,13 +26,28 @@ public class Poetry implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private String poetryContent;
+    @TableField("title")
+    private String title;
 
-    private String poetryTransform;
+    @TableField("author")
+    private String author;
 
-    private String poetryNotes;
+    @TableField("dynasty")
+    private String dynasty;
 
-    private String poetryAppreciation;
+    @TableField("theme")
+    private String theme;
+
+    @TableField("difficulty")
+    private String difficulty;
+
+    private String content;
+
+    private String transform;
+
+    private String notes;
+
+    private String appreciation;
 
     private String creativeBackground;
 

@@ -26,7 +26,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result add(User user) {
         if (getOne(new QueryWrapper<User>()
-                .eq("user_id", user.getId())
+                .eq("id", user.getId())
         ) == null) {
             save(user);
             return ResultUtil.success("用户数据添加成功");
@@ -38,9 +38,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result delete(String uid) {
         if (getOne(new QueryWrapper<User>()
-                .eq("user_id", uid)
+                .eq("id", uid)
         ) != null) {
-            baseMapper.delete(new QueryWrapper<User>().eq("user_id",uid));
+            baseMapper.delete(new QueryWrapper<User>().eq("id",uid));
             return ResultUtil.success("用户数据已经删除");
         } else {
             return ResultUtil.error(ResultEnum.USER_NOT_EXISTS.getCode(), ResultEnum.USER_NOT_EXISTS.getMsg());
@@ -62,7 +62,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result selectUserOne(String uid) {
         User userBase = getOne(new QueryWrapper<User>()
-                .eq("user_id", uid));
+                .eq("id", uid));
         if (userBase == null) {
             return ResultUtil.error(ResultEnum.USER_NOT_EXISTS.getCode(), ResultEnum.USER_NOT_EXISTS.getMsg());
         } else {
@@ -73,10 +73,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result update(User user) {
         if (getOne(new QueryWrapper<User>()
-                .eq("uid", user.getId())
+                .eq("id", user.getId())
         ) != null) {
             baseMapper.update(user, new QueryWrapper<User>()
-                    .eq("uid", user.getId()));
+                    .eq("id", user.getId()));
             return ResultUtil.success("用户数据更新成功");
         }
         return ResultUtil.error(ResultEnum.DATA_NOT_EXISTS.getCode(), ResultEnum.DATA_NOT_EXISTS.getMsg());
