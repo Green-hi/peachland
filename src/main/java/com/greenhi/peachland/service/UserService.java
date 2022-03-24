@@ -3,6 +3,7 @@ package com.greenhi.peachland.service;
 import com.greenhi.peachland.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.greenhi.peachland.unit.Result;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -22,4 +23,6 @@ public interface UserService extends IService<User> {
     Result selectUserOne(String uid);
 
     Result update(User userBase);
+
+    Result uploadFile(Integer id, MultipartFile file);
 }

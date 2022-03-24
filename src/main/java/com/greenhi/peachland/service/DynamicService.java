@@ -4,6 +4,7 @@ import com.greenhi.peachland.entity.Comment;
 import com.greenhi.peachland.entity.Dynamic;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.greenhi.peachland.unit.Result;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -28,7 +29,10 @@ public interface DynamicService extends IService<Dynamic> {
 
     Result selectFocusByUid(Integer uid);
 
-    Result addLikeById(Integer id);
+    Result addLikeById(Integer id, boolean add);
 
-    Result addCommById(Integer id);
+    Result addCommById(Integer id, boolean add);
+
+    Result uploadImgs(Integer id, MultipartFile[] imgs);
+
 }

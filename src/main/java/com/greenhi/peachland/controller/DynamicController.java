@@ -6,11 +6,8 @@ import com.greenhi.peachland.service.DynamicService;
 import com.greenhi.peachland.service.DynamicService;
 import com.greenhi.peachland.unit.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -62,13 +59,17 @@ public class DynamicController {
     }
 
     @RequestMapping(value = "/addLikeById",method = RequestMethod.POST)
-    public Result addLikeById(Integer id){
-        return service.addLikeById(id) ;
+    public Result addLikeById(Integer id, boolean add){
+        return service.addLikeById(id,add) ;
     }
 
     @RequestMapping(value = "/addCommById",method = RequestMethod.POST)
-    public Result addCommById(Integer id){
-        return service.addCommById(id) ;
+    public Result addCommById(Integer id, boolean add){
+        return service.addCommById(id,add) ;
+    }
+
+    @RequestMapping(value = "/uploadImgs",method = RequestMethod.POST)
+    public Result uploadImgs(Integer id, @RequestParam(value = "imgs") MultipartFile[] imgs){
+        return service.uploadImgs(id, imgs);
     }
 }
-

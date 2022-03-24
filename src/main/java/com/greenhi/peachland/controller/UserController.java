@@ -4,12 +4,10 @@ package com.greenhi.peachland.controller;
 import com.greenhi.peachland.entity.User;
 import com.greenhi.peachland.service.UserService;
 import com.greenhi.peachland.unit.Result;
+import org.apache.tomcat.jni.FileInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -41,14 +39,19 @@ public class UserController {
         return service.getAllPaging(pageNo,pageSize) ;
     }
 
-    @RequestMapping(value = "/selectOneById",method = RequestMethod.GET)
-    public Result selectOneById(String id){
-        return service.selectUserOne(id) ;
+    @RequestMapping(value = "/selectOneByUid",method = RequestMethod.GET)
+    public Result selectOneByUid(String uid){
+        return service.selectUserOne(uid) ;
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public Result update(@RequestBody User user){
         return service.update(user);
+    }
+
+    @RequestMapping(value = "/uploadHead",method = RequestMethod.POST)
+    public Result uploadHead(Integer id, @RequestParam(value = "head") MultipartFile head){
+        return service.uploadFile(id, head);
     }
 
 }

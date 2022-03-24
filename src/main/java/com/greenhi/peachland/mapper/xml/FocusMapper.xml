@@ -4,7 +4,6 @@
     <resultMap id="focusMap" type="com.greenhi.peachland.entity.User">
         <id column="id" property="id"/>
         <result column="user_name" property="userName"/>
-        <result column="user_image" property="userImage"/>
         <result column="occupation" property="occupation"/>
         <result column="sex" property="sex"/>
         <result column="brief_introduction" property="briefIntroduction"/>
@@ -15,7 +14,7 @@
     </delete>
 
     <select id="selectByUid" resultMap="focusMap">
-        select id,user_name,user_image,occupation,sex,brief_introduction
+        select id,user_name,occupation,sex,brief_introduction
         from focus f
         inner join user u
         on f.fid=u.id
@@ -23,7 +22,7 @@
     </select>
 
     <select id="selectByFid" resultMap="focusMap">
-        select id,user_name,user_image,occupation,sex,brief_introduction
+        select id,user_name,occupation,sex,brief_introduction
         from focus f
         inner join user u
         on f.uid=u.id

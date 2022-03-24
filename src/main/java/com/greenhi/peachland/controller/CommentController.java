@@ -48,5 +48,10 @@ public class CommentController {
     public Result update(@RequestBody Comment comment){
         return service.update(comment);
     }
+
+    @RequestMapping(value = "/selectByDid",method = RequestMethod.GET)
+    public Result selectByDid(Integer did){
+        return service.selectByDid(did);
+    }
 }
 

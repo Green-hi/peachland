@@ -29,12 +29,15 @@ import java.util.Map;
 @Service
 public class PoetryServiceImpl extends ServiceImpl<PoetryMapper, Poetry> implements PoetryService {
     @Override
-    public Result add(Poetry Poetry) {
+    public Result add(Poetry poetry) {
         if (getOne(new QueryWrapper<Poetry>()
-                .eq("id", Poetry.getId())
+                .eq("id", poetry.getId())
         ) == null) {
-            save(Poetry);
-            return ResultUtil.success("诗歌数据添加成功");
+            save(poetry);
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("msg","诗歌数据添加成功");
+            resultMap.put("id",poetry.getId());
+            return ResultUtil.success(resultMap);
         } else {
             return ResultUtil.error(ResultEnum.DATA_IS_EXISTS.getCode(), ResultEnum.DATA_IS_EXISTS.getMsg());
         }

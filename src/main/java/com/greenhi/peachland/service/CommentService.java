@@ -24,4 +24,6 @@ public interface CommentService extends IService<Comment> {
     Result selectCommentOne(Integer id);
 
     Result update(Comment comment);
+
+    Result selectByDid(Integer did);
 }

@@ -32,7 +32,7 @@ public class Dynamic implements Serializable {
 
     private String dynamicContent;
 
-    private String image;
+    private String imgCount;
 
     private Integer loveNumber;
 

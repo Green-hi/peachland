@@ -16,6 +16,7 @@ public enum ResultEnum {
     SQL_EXCEPTION(402,"SQL异常"),
     FILE_NOT_EXISTS(501,"文件不能为空"),
     FILE_NOT_UPLOADS(501,"文件上传失败"),
+    ID_NOT_EXISTS(444,"id不能为空"),
     FILE_IS_EXISTS(502,"文件已存在"),
     ;
     private Integer code;

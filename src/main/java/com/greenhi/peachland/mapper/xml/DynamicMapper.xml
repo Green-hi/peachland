@@ -8,14 +8,14 @@
         <result column="uid" property="uid"/>
         <result column="user_name" property="userName"/>
         <result column="dynamic_content" property="dynamicContent"/>
-        <result column="image" property="image"/>
+        <result column="img_count" property="imgCount"/>
         <result column="love_number" property="loveNumber"/>
         <result column="comment_number" property="commentNumber"/>
         <result column="create_time" property="createTime"/>
     </resultMap>
 
     <select id="selectFocusByUid" resultMap="dynamicMap">
-        select d.id,d.uid,v.user_name,dynamic_content,image,love_number,comment_number,create_time
+        select d.id,d.uid,v.user_name,dynamic_content,img_count,love_number,comment_number,create_time
         from user u
         inner join focus f on u.id=f.uid
         inner join user v on f.fid=v.id
@@ -24,7 +24,7 @@
     </select>
 
     <select id="selectByUid" resultMap="dynamicMap">
-        select d.id,d.uid,u.user_name,dynamic_content,image,love_number,comment_number,create_time
+        select d.id,d.uid,u.user_name,dynamic_content,img_count,love_number,comment_number,create_time
         from user u
         inner join dynamic_ d on u.id=d.uid
         where u.id=#{uid}
@@ -39,6 +39,24 @@
     <update id="addCommById">
         update dynamic_
         set comment_number=comment_number+1
+        where id=#{id}
+    </update>
+
+    <update id="subLikeById">
+        update dynamic_
+        set love_number=love_number-1
+        where id=#{id}
+    </update>
+
+    <update id="subCommById">
+        update dynamic_
+        set comment_number=comment_number-1
+        where id=#{id}
+    </update>
+
+    <update id="setImgCount">
+        update dynamic_
+        set img_count=#{count}
         where id=#{id}
     </update>
 

@@ -25,9 +25,9 @@ public class User implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private String userName;
+    private String uid;
 
-    private String userImage;
+    private String userName;
 
     private String password;
 

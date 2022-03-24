@@ -15,7 +15,7 @@ public class ItemFocusDynamic {
 
     private String dynamicContent;
 
-    private String image;
+    private String imgCount;
 
     private Integer loveNumber;
 

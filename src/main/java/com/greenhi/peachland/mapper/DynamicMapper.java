@@ -23,4 +23,10 @@ public interface DynamicMapper extends BaseMapper<Dynamic> {
 
     void addCommById(Integer id) throws Exception;
 
+    void subLikeById(Integer id) throws Exception;
+
+    void subCommById(Integer id) throws Exception;
+
+    void setImgCount(Integer id, Integer count);
+
 }
