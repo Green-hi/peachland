@@ -20,7 +20,9 @@ public interface UserService extends IService<User> {
 
     Result getAllPaging(Integer pageNo, Integer pageSize);
 
-    Result selectUserOne(String uid);
+    Result selectOneByUid(String uid);
+
+    Result selectOneById(String id);
 
     Result update(User userBase);
 

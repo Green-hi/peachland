@@ -2,6 +2,7 @@ package com.greenhi.peachland.mapper;
 
 import com.greenhi.peachland.entity.Dynamic;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.greenhi.peachland.item.ItemFocusDynamic;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface DynamicMapper extends BaseMapper<Dynamic> {
 
     List<Dynamic> selectByUid(Integer uid) throws Exception;
 
-    List<Dynamic> selectFocusByUid(Integer uid) throws Exception;
+    List<ItemFocusDynamic> selectFocusByUidPaging(Integer uid, Integer index, Integer pageNo) throws Exception;
 
     void addLikeById(Integer id) throws Exception;
 
@@ -28,5 +29,7 @@ public interface DynamicMapper extends BaseMapper<Dynamic> {
     void subCommById(Integer id) throws Exception;
 
     void setImgCount(Integer id, Integer count);
+
+    List<ItemFocusDynamic> selectPaging(Integer pageNo, Integer pageSize) throws Exception;
 
 }

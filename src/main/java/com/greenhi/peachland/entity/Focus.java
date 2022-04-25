@@ -1,6 +1,10 @@
 package com.greenhi.peachland.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,5 +28,9 @@ public class Focus implements Serializable {
 
     private Integer fid;
 
+    @TableField(value = "create_time",fill = FieldFill.INSERT)
+    private Date createTime;
 
+    @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
 }

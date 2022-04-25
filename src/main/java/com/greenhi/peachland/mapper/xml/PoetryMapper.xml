@@ -18,6 +18,11 @@
         <result column="Korean_translation" property="korean"/>
     </resultMap>
 
+    <resultMap id="poetryMapCount" type="com.greenhi.peachland.item.ItemPoetryCount">
+        <result column="group_" property="group"/>
+        <result column="count_" property="count"/>
+    </resultMap>
+
     <select id="selectByTitleBase" resultMap="poetryMapBase">
         select id,author,content,notes
         from poetry
@@ -53,4 +58,13 @@
         from poetry
         where title=#{title}
     </select>
+
+    <select id="countByGroup" resultMap="poetryMapCount">
+        select ${group} group_,count(${group}) count_
+        from poetry
+        group by ${group}
+    </select>
+    <!-- ${key}表示获取参数，先获取参数的值拼接到SQL语句中，再编译执行SQL语句，可能引起SQL注入问题 SQL拼接 -->
+    <!-- #{key}表示获取参数，先完成SQL语句编译（预编译），之后再将获取的参数设置到SQL语句中,可以避免SQL注入问题 SQL预编译 -->
+    <!-- parameterType用于指定参数类型（当参数是String类型时） -->
 </mapper>

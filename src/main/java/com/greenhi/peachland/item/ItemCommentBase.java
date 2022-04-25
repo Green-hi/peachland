@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class ItemFocusDynamic {
+public class ItemCommentBase {
 
     private Integer id;
 
@@ -13,13 +13,9 @@ public class ItemFocusDynamic {
 
     private String userName;
 
-    private String dynamicContent;
+    private Integer dynamicId;
 
-    private Integer imgCount;
-
-    private Integer loveNumber;
-
-    private Integer commentNumber;
+    private String commentContent;
 
     private Date createTime;
 

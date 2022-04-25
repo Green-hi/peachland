@@ -41,7 +41,12 @@ public class UserController {
 
     @RequestMapping(value = "/selectOneByUid",method = RequestMethod.GET)
     public Result selectOneByUid(String uid){
-        return service.selectUserOne(uid) ;
+        return service.selectOneByUid(uid) ;
+    }
+
+    @RequestMapping(value = "/selectOneById",method = RequestMethod.GET)
+    public Result selectOneById(String id){
+        return service.selectOneById(id) ;
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)

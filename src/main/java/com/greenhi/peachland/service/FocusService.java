@@ -22,4 +22,6 @@ public interface FocusService extends IService<Focus> {
 
     Result selectByFid(Integer fid);
 
+    Result selectOne(Integer uid, Integer fid);
+
 }

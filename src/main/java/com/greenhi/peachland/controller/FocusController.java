@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author greenhi
@@ -28,24 +28,29 @@ public class FocusController {
     @Autowired
     private FocusService service;
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public Result add(Integer uid,Integer fid){
-        return service.add(uid,fid);
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public Result add(Integer uid, Integer fid) {
+        return service.add(uid, fid);
     }
 
-    @RequestMapping(value = "/delete",method = RequestMethod.POST)
-    public Result delete(Integer uid,Integer fid){
-        return service.delete(uid,fid);
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public Result delete(Integer uid, Integer fid) {
+        return service.delete(uid, fid);
     }
 
-    @RequestMapping(value = "/selectByUid",method = RequestMethod.GET)
-    public Result selectByUid(Integer uid){
-        return service.selectByUid(uid) ;
+    @RequestMapping(value = "/selectByUid", method = RequestMethod.GET)
+    public Result selectByUid(Integer uid) {
+        return service.selectByUid(uid);
     }
 
-    @RequestMapping(value = "/selectByFid",method = RequestMethod.GET)
-    public Result selectByFid(Integer fid){
-        return service.selectByFid(fid) ;
+    @RequestMapping(value = "/selectByFid", method = RequestMethod.GET)
+    public Result selectByFid(Integer fid) {
+        return service.selectByFid(fid);
+    }
+
+    @RequestMapping(value = "/selectOne", method = RequestMethod.GET)
+    public Result selectOne(Integer uid, Integer fid) {
+        return service.selectOne(uid, fid);
     }
 
 }

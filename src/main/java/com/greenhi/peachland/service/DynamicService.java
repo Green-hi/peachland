@@ -21,13 +21,15 @@ public interface DynamicService extends IService<Dynamic> {
 
     Result getAllPaging(Integer pageNo, Integer pageSize);
 
+    Result selectPaging(Integer pageNo, Integer pageSize);
+
     Result selectDynamicOne(Integer id);
 
     Result update(Dynamic dynamic);
 
     Result selectByUid(Integer uid);
 
-    Result selectFocusByUid(Integer uid);
+    Result selectFocusByUidPaging(Integer uid, Integer pageNo, Integer pageSize);
 
     Result addLikeById(Integer id, boolean add);
 

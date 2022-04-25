@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.greenhi.peachland.entity.Poetry;
 import com.greenhi.peachland.item.ItemPoetryBase;
+import com.greenhi.peachland.item.ItemPoetryCount;
 import com.greenhi.peachland.item.ItemPoetryTrans;
 import com.greenhi.peachland.mapper.PoetryMapper;
 import com.greenhi.peachland.service.PoetryService;
@@ -161,5 +162,26 @@ public class PoetryServiceImpl extends ServiceImpl<PoetryMapper, Poetry> impleme
             e.printStackTrace();
             return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(),ResultEnum.SQL_EXCEPTION.getMsg());
         }
+    }
+
+    @Override
+    public Result countByGroup(String group) {
+        try {
+            List<ItemPoetryCount> itemPoetryCounts = baseMapper.countByGroup(group);
+            return ResultUtil.success(itemPoetryCounts);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(),ResultEnum.SQL_EXCEPTION.getMsg());
+        }
+    }
+
+    @Override
+    public Result getOntByTitle(String title) {
+        Poetry poetry = getOne(new QueryWrapper<Poetry>()
+                .eq("title", title));
+        if (poetry!= null) {
+            return ResultUtil.success(poetry);
+        }
+        return ResultUtil.error(ResultEnum.DATA_NOT_EXISTS.getCode(), ResultEnum.DATA_NOT_EXISTS.getMsg());
     }
 }

@@ -1,6 +1,5 @@
 package com.greenhi.peachland.controller;
 
-
 import com.greenhi.peachland.entity.Poetry;
 import com.greenhi.peachland.service.PoetryService;
 import com.greenhi.peachland.unit.Result;
@@ -78,6 +77,16 @@ public class PoetryController {
     @RequestMapping(value = "/getTransByTitle",method = RequestMethod.GET)
     public Result getTransByTitle(String title){
         return service.getTransByTitle(title) ;
+    }
+
+    @RequestMapping(value = "/countByGroup",method = RequestMethod.GET)
+    public Result countByGroup(String group){
+        return service.countByGroup(group) ;
+    }
+
+    @RequestMapping(value = "/getOntByTitle",method = RequestMethod.GET)
+    public Result getOntByTitle(String title){
+        return service.getOntByTitle(title) ;
     }
 
 }

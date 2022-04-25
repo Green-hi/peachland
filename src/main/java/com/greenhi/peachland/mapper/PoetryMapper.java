@@ -3,6 +3,7 @@ package com.greenhi.peachland.mapper;
 import com.greenhi.peachland.entity.Poetry;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.greenhi.peachland.item.ItemPoetryBase;
+import com.greenhi.peachland.item.ItemPoetryCount;
 import com.greenhi.peachland.item.ItemPoetryTrans;
 
 import java.util.List;
@@ -28,5 +29,7 @@ public interface PoetryMapper extends BaseMapper<Poetry> {
     List<String> selectTitleByDynasty(String dynasty) throws Exception;
 
     ItemPoetryTrans getTransByTitle(String title) throws Exception;
+
+    List<ItemPoetryCount> countByGroup(String group) throws Exception;
 
 }

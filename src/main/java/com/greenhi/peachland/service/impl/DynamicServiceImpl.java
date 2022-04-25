@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.greenhi.peachland.controller.DynamicController;
 import com.greenhi.peachland.controller.UserController;
 import com.greenhi.peachland.entity.Dynamic;
+import com.greenhi.peachland.item.ItemFocusDynamic;
 import com.greenhi.peachland.mapper.DynamicMapper;
 import com.greenhi.peachland.service.DynamicService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -80,6 +81,18 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic> impl
     }
 
     @Override
+    public Result selectPaging(Integer pageNo, Integer pageSize){
+        List<ItemFocusDynamic> dynamics = null;
+        try {
+            dynamics = baseMapper.selectPaging(pageNo-1,pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(), ResultEnum.SQL_EXCEPTION.getMsg());
+        }
+        return ResultUtil.success(dynamics);
+    }
+
+    @Override
     public Result selectDynamicOne(Integer id) {
         Dynamic DynamicBase = getOne(new QueryWrapper<Dynamic>()
                 .eq("id", id));
@@ -115,10 +128,10 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic> impl
     }
 
     @Override
-    public Result selectFocusByUid(Integer uid) {
-        List<Dynamic> dynamics = null;
+    public Result selectFocusByUidPaging(Integer uid, Integer pageNo, Integer pageSize) {
+        List<ItemFocusDynamic> dynamics = null;
         try {
-            dynamics = baseMapper.selectFocusByUid(uid);
+            dynamics = baseMapper.selectFocusByUidPaging(uid, (pageNo-1)*pageSize, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(), ResultEnum.SQL_EXCEPTION.getMsg());

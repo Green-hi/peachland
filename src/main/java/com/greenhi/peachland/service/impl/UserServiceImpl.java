@@ -78,9 +78,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public Result selectUserOne(String uid) {
+    public Result selectOneByUid(String uid) {
         User userBase = getOne(new QueryWrapper<User>()
                 .eq("uid", uid));
+        if (userBase == null) {
+            return ResultUtil.error(ResultEnum.USER_NOT_EXISTS.getCode(), ResultEnum.USER_NOT_EXISTS.getMsg());
+        } else {
+            return ResultUtil.success(userBase);
+        }
+    }
+
+    @Override
+    public Result selectOneById(String id) {
+        User userBase = getOne(new QueryWrapper<User>()
+                .eq("id", id));
         if (userBase == null) {
             return ResultUtil.error(ResultEnum.USER_NOT_EXISTS.getCode(), ResultEnum.USER_NOT_EXISTS.getMsg());
         } else {

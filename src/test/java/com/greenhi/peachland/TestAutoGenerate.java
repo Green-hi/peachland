@@ -70,7 +70,7 @@ public class TestAutoGenerate {
         // Step5：策略配置（数据库表配置）
         StrategyConfig strategy = new StrategyConfig();
         // 指定表名（可以同时操作多个表，使用 , 隔开）（需要修改）
-        strategy.setInclude("comment","dynamic_","focus");
+        strategy.setInclude("course");
         // 配置数据表与实体类名之间映射的策略
         strategy.setNaming(NamingStrategy.underline_to_camel);
         // 配置数据表的字段与实体类的属性名之间映射的策略
@@ -87,6 +87,6 @@ public class TestAutoGenerate {
         mpg.setStrategy(strategy);
 
         // Step6：执行代码生成操作
-        //mpg.execute();
+//        mpg.execute();
     }
 }

@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 21/03/2022 20:06:15
+ Date: 25/04/2022 11:48:40
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `comment`  (
   INDEX `FK_comment_uid`(`uid`) USING BTREE,
   CONSTRAINT `FK_comment_did` FOREIGN KEY (`dynamic_id`) REFERENCES `dynamic_` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_comment_uid` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of comment
@@ -41,6 +41,26 @@ CREATE TABLE `comment`  (
 INSERT INTO `comment` VALUES (1, 1, 1, '我笑了', '2022-03-14 23:32:40', '2022-03-14 23:32:40');
 INSERT INTO `comment` VALUES (2, 2, 1, '哈哈哈', '0000-00-00 00:00:00', NULL);
 INSERT INTO `comment` VALUES (3, 2, 1, '哈哈哈', '0000-00-00 00:00:00', NULL);
+INSERT INTO `comment` VALUES (4, 1, 2, '我真的想笑', '0000-00-00 00:00:00', NULL);
+
+-- ----------------------------
+-- Table structure for course
+-- ----------------------------
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE `course`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `intro` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `author` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+INSERT INTO `course` VALUES (1, 'zhangfei', 'lalala', 'soldier', '0000-00-00 00:00:00', NULL);
 
 -- ----------------------------
 -- Table structure for dynamic_
@@ -58,7 +78,7 @@ CREATE TABLE `dynamic_`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FK_dynamic_uid`(`uid`) USING BTREE,
   CONSTRAINT `FK_dynamic_uid` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of dynamic_
@@ -67,6 +87,8 @@ INSERT INTO `dynamic_` VALUES (1, 2, '全力以赴推倒对面，是战争的基
 INSERT INTO `dynamic_` VALUES (2, 3, '好好反省', 0, 44, 44, '0000-00-00 00:00:00', NULL);
 INSERT INTO `dynamic_` VALUES (3, 1, '有些罪不会消失，有些事非做不可。', 0, 0, 0, '0000-00-00 00:00:00', NULL);
 INSERT INTO `dynamic_` VALUES (4, 1, '邂逅，让我回忆起重要的事。', 0, 0, 0, '0000-00-00 00:00:00', NULL);
+INSERT INTO `dynamic_` VALUES (5, 3, '酒且斟下，某去便来。', 0, 0, 0, '2022-03-24 16:58:40', '2022-03-24 16:58:40');
+INSERT INTO `dynamic_` VALUES (6, 1, '酒且斟下，某去便来。', 0, 0, 0, '2022-03-24 17:01:46', '2022-03-24 17:01:46');
 
 -- ----------------------------
 -- Table structure for focus
@@ -75,6 +97,8 @@ DROP TABLE IF EXISTS `focus`;
 CREATE TABLE `focus`  (
   `uid` int NOT NULL,
   `fid` int NOT NULL,
+  `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`uid`, `fid`) USING BTREE,
   INDEX `FK_focus_fid`(`fid`) USING BTREE,
   CONSTRAINT `FK_focus_fid` FOREIGN KEY (`fid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -84,9 +108,10 @@ CREATE TABLE `focus`  (
 -- ----------------------------
 -- Records of focus
 -- ----------------------------
-INSERT INTO `focus` VALUES (1, 2);
-INSERT INTO `focus` VALUES (3, 2);
-INSERT INTO `focus` VALUES (1, 3);
+INSERT INTO `focus` VALUES (1, 2, '0000-00-00 00:00:00', NULL);
+INSERT INTO `focus` VALUES (1, 3, '0000-00-00 00:00:00', NULL);
+INSERT INTO `focus` VALUES (2, 2, '0000-00-00 00:00:00', NULL);
+INSERT INTO `focus` VALUES (3, 2, '0000-00-00 00:00:00', NULL);
 
 -- ----------------------------
 -- Table structure for poetry
@@ -111,7 +136,7 @@ CREATE TABLE `poetry`  (
   `Japanese_translation` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `Korean_translation` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of poetry
@@ -135,14 +160,16 @@ CREATE TABLE `user`  (
   `love` int NOT NULL DEFAULT 0,
   `funs` int NOT NULL DEFAULT 0,
   `focus` int NOT NULL DEFAULT 0,
+  `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, '111', 'zhangfei', 'lalalahaha', 'soldier', '男', '我最帅', 666, 666, 666);
-INSERT INTO `user` VALUES (2, '222', 'guanyu', 'heiheihei', 'soldier', '男', '我最牛', 999, 999, 999);
-INSERT INTO `user` VALUES (3, '333', 'liubei', 'hahaha', 'soldier', '男', '我最大', 1000, 1000, 1000);
+INSERT INTO `user` VALUES (1, '111', 'zhangfei', 'lalalahaha', 'soldier', '男', '我最帅', 666, 666, 666, '0000-00-00 00:00:00', NULL);
+INSERT INTO `user` VALUES (2, '222', 'guanyu', 'heiheihei', 'soldier', '男', '我最牛', 999, 999, 999, '0000-00-00 00:00:00', NULL);
+INSERT INTO `user` VALUES (3, '333', 'liubei', 'hahaha', 'soldier', '男', '我最大', 1000, 1000, 1000, '0000-00-00 00:00:00', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

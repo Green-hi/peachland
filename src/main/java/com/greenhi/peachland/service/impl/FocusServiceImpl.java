@@ -64,4 +64,15 @@ public class FocusServiceImpl extends ServiceImpl<FocusMapper, Focus> implements
         List<User> users = baseMapper.selectByFid(fid);
         return ResultUtil.success(users);
     }
+
+    @Override
+    public Result selectOne(Integer uid, Integer fid) {
+        if (getOne(new QueryWrapper<Focus>()
+                .eq("uid", uid)
+                .eq("fid", fid)
+        ) == null){
+            return ResultUtil.error(ResultEnum.DATA_NOT_EXISTS.getCode(), ResultEnum.DATA_NOT_EXISTS.getMsg());
+        }
+        return ResultUtil.success();
+    }
 }

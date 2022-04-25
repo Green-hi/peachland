@@ -37,4 +37,8 @@ public interface PoetryService extends IService<Poetry> {
 
     Result getTransByTitle(String title);
 
+    Result countByGroup(String group);
+
+    Result getOntByTitle(String title);
+
 }

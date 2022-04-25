@@ -14,13 +14,14 @@
         <result column="create_time" property="createTime"/>
     </resultMap>
 
-    <select id="selectFocusByUid" resultMap="dynamicMap">
+    <select id="selectFocusByUidPaging" resultMap="dynamicMap">
         select d.id,d.uid,v.user_name,dynamic_content,img_count,love_number,comment_number,create_time
         from user u
         inner join focus f on u.id=f.uid
         inner join user v on f.fid=v.id
         inner join dynamic_ d on f.fid=d.uid
         where u.id=#{uid}
+        LIMIT #{index},#{pageNo}
     </select>
 
     <select id="selectByUid" resultMap="dynamicMap">
@@ -59,5 +60,14 @@
         set img_count=#{count}
         where id=#{id}
     </update>
+
+    <select id="selectPaging" resultMap="dynamicMap">
+
+        select d.id,d.uid,u.user_name,dynamic_content,img_count,love_number,comment_number,create_time
+        from (
+	        SELECT * FROM dynamic_ WHERE id > (#{pageNo}*#{pageSize}) LIMIT #{pageSize}
+        ) as d INNER JOIN user u
+        on u.id=d.uid
+    </select>
 
 </mapper>
