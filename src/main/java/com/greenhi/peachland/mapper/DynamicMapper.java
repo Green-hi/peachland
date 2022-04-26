@@ -18,7 +18,7 @@ public interface DynamicMapper extends BaseMapper<Dynamic> {
 
     List<Dynamic> selectByUid(Integer uid) throws Exception;
 
-    List<ItemFocusDynamic> selectFocusByUidPaging(Integer uid, Integer index, Integer pageNo) throws Exception;
+    List<ItemFocusDynamic> selectFocusByUidPaging(Integer uid, Integer index, Integer pageSize) throws Exception;
 
     void addLikeById(Integer id) throws Exception;
 
@@ -30,6 +30,6 @@ public interface DynamicMapper extends BaseMapper<Dynamic> {
 
     void setImgCount(Integer id, Integer count);
 
-    List<ItemFocusDynamic> selectPaging(Integer pageNo, Integer pageSize) throws Exception;
+    List<ItemFocusDynamic> selectPaging(Integer index, Integer pageSize) throws Exception;
 
 }

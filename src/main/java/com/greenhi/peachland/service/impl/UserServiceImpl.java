@@ -66,6 +66,37 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
+    public Result addFunsById(Integer id, boolean add) {
+        try {
+            if(add){
+                baseMapper.addFunsById(id);
+            }else {
+                baseMapper.subFunsById(id);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(), ResultEnum.SQL_EXCEPTION.getMsg());
+        }
+        return ResultUtil.success();
+    }
+
+    @Override
+    public Result addFocusById(Integer id, boolean add) {
+        try {
+            if(add){
+                baseMapper.addFocusById(id);
+            }else {
+                baseMapper.subFocusById(id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(), ResultEnum.SQL_EXCEPTION.getMsg());
+        }
+        return ResultUtil.success();
+    }
+
+    @Override
     public Result getAllPaging(Integer pageNo, Integer pageSize) {
         IPage<User> mPage = new Page<>(pageNo, pageSize);
         QueryWrapper<User> wrapper = new QueryWrapper<>();

@@ -12,5 +12,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2022-03-01
  */
 public interface UserMapper extends BaseMapper<User> {
+    void addFunsById(Integer id) throws Exception;
 
+    void addFocusById(Integer id) throws Exception;
+
+    void subFunsById(Integer id) throws Exception;
+
+    void subFocusById(Integer id) throws Exception;
 }

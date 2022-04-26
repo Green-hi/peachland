@@ -7,6 +7,7 @@ import com.greenhi.peachland.entity.User;
 import com.greenhi.peachland.mapper.FocusMapper;
 import com.greenhi.peachland.service.FocusService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.greenhi.peachland.service.UserService;
 import com.greenhi.peachland.unit.Result;
 import com.greenhi.peachland.unit.ResultEnum;
 import com.greenhi.peachland.unit.ResultUtil;
@@ -25,6 +26,9 @@ import java.util.List;
 @Service
 public class FocusServiceImpl extends ServiceImpl<FocusMapper, Focus> implements FocusService {
 
+    @Autowired
+    private UserService service;
+
     @Override
     public Result add(Integer uid,Integer fid) {
         if (getOne(new QueryWrapper<Focus>()
@@ -35,6 +39,8 @@ public class FocusServiceImpl extends ServiceImpl<FocusMapper, Focus> implements
             focus.setUid(uid);
             focus.setFid(fid);
             save(focus);
+            service.addFocusById(uid,true);
+            service.addFunsById(fid,true);
             return ResultUtil.success("关注数据添加成功");
         } else {
             return ResultUtil.error(ResultEnum.DATA_IS_EXISTS.getCode(), ResultEnum.DATA_IS_EXISTS.getMsg());
@@ -50,6 +56,8 @@ public class FocusServiceImpl extends ServiceImpl<FocusMapper, Focus> implements
             return ResultUtil.error(ResultEnum.DATA_NOT_EXISTS.getCode(), ResultEnum.DATA_NOT_EXISTS.getMsg());
         }
         baseMapper.deleteByUidAndFid(uid,fid);
+        service.addFocusById(uid,false);
+        service.addFunsById(fid,false);
         return ResultUtil.success("关注数据已经删除");
     }
 

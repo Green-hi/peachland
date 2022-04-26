@@ -18,6 +18,10 @@ public interface UserService extends IService<User> {
 
     Result delete(String uid);
 
+    Result addFunsById(Integer id, boolean add);
+
+    Result addFocusById(Integer id, boolean add);
+
     Result getAllPaging(Integer pageNo, Integer pageSize);
 
     Result selectOneByUid(String uid);

@@ -17,6 +17,7 @@
         inner join user u
         on c.uid=u.id
         where dynamic_id=#{did}
+        order by c.id desc
     </select>
 
 </mapper>

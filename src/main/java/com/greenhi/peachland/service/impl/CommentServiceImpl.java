@@ -58,7 +58,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     public Result getAllPaging(Integer pageNo, Integer pageSize) {
         IPage<Comment> mPage = new Page<>(pageNo, pageSize);
         QueryWrapper<Comment> wrapper = new QueryWrapper<>();
-//        wrapper.orderByAsc("id");
+        wrapper.orderByDesc("id");
         IPage<Comment> CommentIPage = page(mPage, wrapper);
         if(CommentIPage != null){
             return ResultUtil.success(CommentIPage);

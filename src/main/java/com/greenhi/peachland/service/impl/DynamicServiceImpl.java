@@ -72,7 +72,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic> impl
     public Result getAllPaging(Integer pageNo, Integer pageSize) {
         IPage<Dynamic> mPage = new Page<>(pageNo, pageSize);
         QueryWrapper<Dynamic> wrapper = new QueryWrapper<>();
-//        wrapper.orderByAsc("id");
+        wrapper.orderByDesc("id");
         IPage<Dynamic> DynamicIPage = page(mPage, wrapper);
         if (DynamicIPage != null) {
             return ResultUtil.success(DynamicIPage);
@@ -84,7 +84,7 @@ public class DynamicServiceImpl extends ServiceImpl<DynamicMapper, Dynamic> impl
     public Result selectPaging(Integer pageNo, Integer pageSize){
         List<ItemFocusDynamic> dynamics = null;
         try {
-            dynamics = baseMapper.selectPaging(pageNo-1,pageSize);
+            dynamics = baseMapper.selectPaging((pageNo-1)*pageSize,pageSize);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error(ResultEnum.SQL_EXCEPTION.getCode(), ResultEnum.SQL_EXCEPTION.getMsg());

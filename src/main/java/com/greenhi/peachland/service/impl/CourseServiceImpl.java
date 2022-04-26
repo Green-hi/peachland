@@ -64,7 +64,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     public Result getAllPaging(Integer pageNo, Integer pageSize) {
         IPage<Course> mPage = new Page<>(pageNo, pageSize);
         QueryWrapper<Course> wrapper = new QueryWrapper<>();
-//        wrapper.orderByAsc("id");
+        wrapper.orderByAsc("id");
         IPage<Course> CourseIPage = page(mPage, wrapper);
         if(CourseIPage != null){
             return ResultUtil.success(CourseIPage);
