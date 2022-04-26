@@ -15,7 +15,7 @@
     </resultMap>
 
     <select id="selectFocusByUidPaging" resultMap="dynamicMap">
-        select d.id,d.uid,v.user_name,dynamic_content,img_count,love_number,comment_number,create_time
+        select d.id,d.uid,v.user_name,dynamic_content,img_count,love_number,comment_number,d.create_time
         from user u
         inner join focus f on u.id=f.uid
         inner join user v on f.fid=v.id
@@ -25,7 +25,7 @@
     </select>
 
     <select id="selectByUid" resultMap="dynamicMap">
-        select d.id,d.uid,u.user_name,dynamic_content,img_count,love_number,comment_number,create_time
+        select d.id,d.uid,u.user_name,dynamic_content,img_count,love_number,comment_number,d.create_time
         from user u
         inner join dynamic_ d on u.id=d.uid
         where u.id=#{uid}
@@ -63,7 +63,7 @@
 
     <select id="selectPaging" resultMap="dynamicMap">
 
-        select d.id,d.uid,u.user_name,dynamic_content,img_count,love_number,comment_number,create_time
+        select d.id,d.uid,u.user_name,dynamic_content,img_count,love_number,comment_number,d.create_time
         from (
 	        SELECT * FROM dynamic_ WHERE id > (#{pageNo}*#{pageSize}) LIMIT #{pageSize}
         ) as d INNER JOIN user u

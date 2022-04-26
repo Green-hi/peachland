@@ -29,11 +29,14 @@ public class Course implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    private String tag;
+
     private String title;
 
     private String intro;
 
-    private String author;
+    @TableField("author_id")
+    private Integer authorId;
 
     @TableField(value = "create_time",fill = FieldFill.INSERT)
     private Date createTime;

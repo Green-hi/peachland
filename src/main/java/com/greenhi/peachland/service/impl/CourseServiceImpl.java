@@ -5,12 +5,15 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.greenhi.peachland.entity.Course;
 import com.greenhi.peachland.entity.Course;
+import com.greenhi.peachland.entity.User;
 import com.greenhi.peachland.mapper.CourseMapper;
 import com.greenhi.peachland.service.CourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.greenhi.peachland.service.UserService;
 import com.greenhi.peachland.unit.Result;
 import com.greenhi.peachland.unit.ResultEnum;
 import com.greenhi.peachland.unit.ResultUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -27,18 +30,21 @@ import java.util.Map;
 @Service
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements CourseService {
 
+    @Autowired
+    private UserService service;
+
     @Override
     public Result add(Course Course) {
-        if (getOne(new QueryWrapper<Course>()
-                .eq("id", Course.getId())
-        ) == null) {
+        if (service.getOne(new QueryWrapper<User>()
+                .eq("id", Course.getAuthorId())
+        ) != null) {
             save(Course);
             Map<String, Object> resultMap = new HashMap<>();
             resultMap.put("msg","课程数据添加成功");
             resultMap.put("id",Course.getId());
             return ResultUtil.success(resultMap);
         } else {
-            return ResultUtil.error(ResultEnum.DATA_IS_EXISTS.getCode(), ResultEnum.DATA_IS_EXISTS.getMsg());
+            return ResultUtil.error(ResultEnum.USER_NOT_EXISTS.getCode(), ResultEnum.USER_NOT_EXISTS.getMsg());
         }
     }
 
