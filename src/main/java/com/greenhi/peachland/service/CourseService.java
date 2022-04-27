@@ -20,6 +20,8 @@ public interface CourseService extends IService<Course> {
 
     Result getAllPaging(Integer pageNo, Integer pageSize);
 
+    Result getAll();
+
     Result selectCourseOne(Integer id);
 
     Result update(Course course);

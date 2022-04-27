@@ -2,4 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.greenhi.peachland.mapper.CourseMapper">
 
+    <resultMap id="courseMap" type="com.greenhi.peachland.item.ItemCourse">
+        <id column="id" property="id"/>
+        <result column="tag" property="tag"/>
+        <result column="title" property="title"/>
+        <result column="intro" property="intro"/>
+        <result column="user_name" property="author"/>
+        <result column="uid" property="authorId"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="courseMap">
+        select c.id,tag,title,intro,user_name,u.id,c.create_time
+        from user u
+        inner join course c on u.id=c.author_id
+    </select>
 </mapper>

@@ -40,6 +40,11 @@ public class CourseController {
         return service.getAllPaging(pageNo,pageSize) ;
     }
 
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    public Result getAll(){
+        return service.getAll();
+    }
+
     @RequestMapping(value = "/selectOneById",method = RequestMethod.GET)
     public Result selectOneById(Integer id){
         return service.selectCourseOne(id) ;

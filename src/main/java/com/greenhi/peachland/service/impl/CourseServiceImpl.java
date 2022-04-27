@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.greenhi.peachland.entity.Course;
 import com.greenhi.peachland.entity.Course;
 import com.greenhi.peachland.entity.User;
+import com.greenhi.peachland.item.ItemCourse;
 import com.greenhi.peachland.mapper.CourseMapper;
 import com.greenhi.peachland.service.CourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -17,11 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author greenhi
@@ -40,8 +42,8 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         ) != null) {
             save(Course);
             Map<String, Object> resultMap = new HashMap<>();
-            resultMap.put("msg","课程数据添加成功");
-            resultMap.put("id",Course.getId());
+            resultMap.put("msg", "课程数据添加成功");
+            resultMap.put("id", Course.getId());
             return ResultUtil.success(resultMap);
         } else {
             return ResultUtil.error(ResultEnum.USER_NOT_EXISTS.getCode(), ResultEnum.USER_NOT_EXISTS.getMsg());
@@ -53,11 +55,24 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         if (getOne(new QueryWrapper<Course>()
                 .eq("id", id)
         ) != null) {
-            baseMapper.delete(new QueryWrapper<Course>().eq("id",id));
+            baseMapper.delete(new QueryWrapper<Course>().eq("id", id));
             return ResultUtil.success("课程数据已经删除");
         } else {
             return ResultUtil.error(ResultEnum.DATA_NOT_EXISTS.getCode(), ResultEnum.DATA_NOT_EXISTS.getMsg());
         }
+    }
+
+    @Override
+    public Result getAll() {
+        try {
+            List<ItemCourse> courseList = baseMapper.getAll();
+            if (courseList != null && courseList.size() > 0) {
+                return ResultUtil.success(courseList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResultUtil.error(ResultEnum.UNKNOWN_ERROR.getCode(), ResultEnum.UNKNOWN_ERROR.getMsg());
     }
 
     @Override
@@ -66,7 +81,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         QueryWrapper<Course> wrapper = new QueryWrapper<>();
         wrapper.orderByAsc("id");
         IPage<Course> CourseIPage = page(mPage, wrapper);
-        if(CourseIPage != null){
+        if (CourseIPage != null) {
             return ResultUtil.success(CourseIPage);
         }
         return ResultUtil.error(ResultEnum.UNKNOWN_ERROR.getCode(), ResultEnum.UNKNOWN_ERROR.getMsg());
