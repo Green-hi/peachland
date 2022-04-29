@@ -18,5 +18,6 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
         registry.addResourceHandler("/img_user_head/**").addResourceLocations("file:/data/peachland/img_user_head/");
         registry.addResourceHandler("/img_dynamic/**").addResourceLocations("file:/data/peachland/img_dynamic/");
         registry.addResourceHandler("/course_video/**").addResourceLocations("file:/data/peachland/course_video/");
+        registry.addResourceHandler("/shiyan/**").addResourceLocations("file:/data/peachland/shiyan/");
     }
 }
